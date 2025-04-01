@@ -31,7 +31,8 @@ pipeline {
         stage('3. Publish Reports') {
             steps {
                 bat 'dir playwright-report'
-                archiveArtifacts artifacts: 'playwright-report/**', 'cucumber-report/**',
+                archiveArtifacts
+                    artifacts: 'playwright-report/**, cucumber-report/**',
                     allowEmptyArchive: true
                 bat 'dir cucumber-report'
 
