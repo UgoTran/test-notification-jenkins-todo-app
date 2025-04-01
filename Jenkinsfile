@@ -28,23 +28,20 @@ pipeline {
         }
         stage('3. Publish Reports') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                echo 'Publishing reports...'
                 // Archive the Playwright HTML report so we can view it later
-                    archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
 
                 // Optionally, publish HTML report to Jenkins (if HTML Publisher plugin is installed)
                 // publishHTML([allowMissing: true, alwaysLinkToLastBuild: true,
                 //    keepAll: true, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report'])
-                }
             }
         }
     }
 
 //     post {
 //         always {
-//             Always record test results (if JUnit report is generated, uncomment below)
 //             junit 'results.xml'
 //         }
-//         We could also add cleanup steps here if needed (e.g., npm cache clean or remove node modules)
 //     }
 }
