@@ -31,7 +31,9 @@ pipeline {
         stage('3. Publish Reports') {
             steps {
                 // Archive the Playwright HTML report so we can view it later
+                bat 'dir playwright-report'
                 archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+                bat 'dir cucumber-report'
 
                 // Optionally, publish HTML report to Jenkins (if HTML Publisher plugin is installed)
                 // publishHTML([allowMissing: true, alwaysLinkToLastBuild: true,
