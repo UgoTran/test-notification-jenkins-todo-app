@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         nodejs "NodeJS 22"
+        allure "allure"
     }
 
     stages {
