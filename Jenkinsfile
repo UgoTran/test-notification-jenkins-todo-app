@@ -32,6 +32,7 @@ pipeline {
             steps {
                 bat 'dir playwright-report'
                 archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'cucumber-report/**', allowEmptyArchive: true
 //                     artifacts: 'playwright-report/**, cucumber-report/**',
 //                     allowEmptyArchive: true
                 bat 'dir cucumber-report'
@@ -50,9 +51,9 @@ pipeline {
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: 'playwright-report',
+                    reportDir: 'cucumber-report',
                     reportFiles: 'index.html',
-                    reportName: 'Playwright HTML Report'
+                    reportName: 'Cucumber HTML Report'
                 ])
             }
         }
