@@ -6,9 +6,16 @@ pipeline {
     }
 
     stages {
+        stage('* Check branch') {
+            steps {
+                bat 'git branch'
+            }
+        }
+
         stage('1. Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'node -v'
+                bat 'npm install'
             }
         }
         stage('2. Run Playwright Tests') {
@@ -16,7 +23,7 @@ pipeline {
                 // Run tests in headless mode (default).
                 // The --reporter option here outputs both line summary and HTML results.
 //                 sh 'npx playwright test --reporter=dot,html'
-                sh 'npm test'
+                bat 'npm test'
             }
         }
         stage('3. Publish Reports') {
