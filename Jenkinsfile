@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('1. Install Dependencies') {
             steps {
-                sh 'npm ci'
                 sh 'npm install'
             }
         }
@@ -16,7 +15,8 @@ pipeline {
             steps {
                 // Run tests in headless mode (default).
                 // The --reporter option here outputs both line summary and HTML results.
-                sh 'npx playwright test --reporter=dot,html'
+//                 sh 'npx playwright test --reporter=dot,html'
+                sh 'npm test'
             }
         }
         stage('3. Publish Reports') {
