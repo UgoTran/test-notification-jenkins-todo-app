@@ -23,16 +23,13 @@ pipeline {
                 // Run tests in headless mode (default).
                 // The --reporter option here outputs both line summary and HTML results.
 //                 sh 'npx playwright test --reporter=dot,html'
-                try {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     bat 'npm test'
-                } catch (e) {
-                    currentBuild.result = 'UNSTABLE'
                 }
             }
         }
         stage('3. Publish Reports') {
             steps {
-                echo 'Publishing reports...'
                 // Archive the Playwright HTML report so we can view it later
                 archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
 
@@ -45,7 +42,9 @@ pipeline {
 
 //     post {
 //         always {
+//             Always record test results (if JUnit report is generated, uncomment below)
 //             junit 'results.xml'
 //         }
+//         We could also add cleanup steps here if needed (e.g., npm cache clean or remove node modules)
 //     }
 }
