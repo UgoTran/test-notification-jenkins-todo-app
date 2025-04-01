@@ -13,6 +13,8 @@ npm-debug.log
 test-results
 playwright-report
 cucumber-report
+allure-results
+allure-report
 **/.features-gen/**/*.spec.js
 
 /update.sh
