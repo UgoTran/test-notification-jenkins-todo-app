@@ -52,6 +52,20 @@ pipeline {
                     reportFiles: 'index.html',
                     reportName: 'Cucumber HTML Report'
                 ])
+                bat 'echo ALLURE REPORT - Build report'
+                bat 'allure serve allure-results'
+                bat 'echo Generate report'
+                bat 'allure generate allure-results --clean -o allure-report'
+                archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+                bat 'echo Publish allure-report'
+                publishHTML([
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'allure-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Allure HTML Report'
+                ])
             }
         }
     }

@@ -34,10 +34,13 @@ export default defineConfig({
       attachmentsBaseURL: "http://127.0.0.1:8080/data",
     }),
     ["html", { open: "never" }],
-    // [ "allure-playwright", {
-    //     resultsDir: "allure-report/results",
-    //   },
-    // ],
+    ["line"],
+    [
+      "allure-playwright",
+      {
+        resultsDir: "allure-results",
+      },
+    ]
     // ['list'],
     // ['monocart-reporter', {
     //   outputFile: 'monocart-html-report/test-results/report.html'
