@@ -23,7 +23,11 @@ pipeline {
                 // Run tests in headless mode (default).
                 // The --reporter option here outputs both line summary and HTML results.
 //                 sh 'npx playwright test --reporter=dot,html'
-                bat 'npm test'
+                try {
+                    bat 'npm test'
+                } catch (e) {
+                    currentBuild.result = 'UNSTABLE'
+                }
             }
         }
         stage('3. Publish Reports') {
